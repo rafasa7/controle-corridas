@@ -1,18 +1,47 @@
 corridas = []
 
-print("=== CONTROLE DE CORRIDAS ===")
+while True:
+    print("\n=== CONTROLE DE CORRIDAS ===")
+    print("1 - Cadastrar corrida")
+    print("2 - Ver corridas cadastradas")
+    print("3 - Ver total ganho")
+    print("4 - Sair")
 
-valor = float(input("Digite o valor da corrida: R$ "))
-distancia = float(input("Digite a distância percorrida (km): "))
+    opcao = input("\nEscolha uma opção: ")
 
-corrida = {
-    "valor": valor,
-    "distancia": distancia
-}
+    if opcao == "1":
+        valor = float(input("Digite o valor da corrida: R$ "))
+        distancia = float(input("Digite a distância percorrida (km): "))
 
-corridas.append(corrida)
+        corrida = {
+            "valor": valor,
+            "distancia": distancia
+        }
 
-print("\nCorrida cadastrada com sucesso!")
+        corridas.append(corrida)
 
-print(f"Valor da corrida: R$ {valor:.2f}")
-print(f"Distância percorrida: {distancia:.2f} km")
+        print("\nCorrida cadastrada com sucesso!")
+
+    elif opcao == "2":
+        print("\n=== CORRIDAS CADASTRADAS ===")
+
+        if len(corridas) == 0:
+            print("Nenhuma corrida cadastrada.")
+        else:
+            for i, corrida in enumerate(corridas, start=1):
+                print(
+                    f"{i} - R$ {corrida['valor']:.2f} | "
+                    f"{corrida['distancia']:.2f} km"
+                )
+
+    elif opcao == "3":
+        total = sum(corrida["valor"] for corrida in corridas)
+
+        print(f"\nTotal ganho: R$ {total:.2f}")
+
+    elif opcao == "4":
+        print("\nEncerrando o sistema. Até mais!")
+        break
+
+    else:
+        print("\nOpção inválida. Tente novamente.")
