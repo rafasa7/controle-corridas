@@ -22,7 +22,7 @@ O sistema permite registrar corridas realizadas por motoristas de aplicativos, v
 
 ##  Como executar o projeto
 
-1. Clone este repositório.
+1. Copie este repositório.
 2. Abra a pasta do projeto.
 3. Certifique-se de ter o Python instalado.
 4. Execute o arquivo principal com o comando:
