@@ -1,3 +1,4 @@
+from datetime import datetime
 corridas = []
 
 while True:
@@ -13,10 +14,11 @@ while True:
     if opcao == "1":
         valor = float(input("Digite o valor da corrida: R$ "))
         distancia = float(input("Digite a distância percorrida (km): "))
-
+        data = datetime.now().strftime("%d/%m/%Y")
         corrida = {
             "valor": valor,
-            "distancia": distancia
+            "distancia": distancia,
+            "data": data
         }
 
         corridas.append(corrida)
@@ -32,7 +34,8 @@ while True:
             for i, corrida in enumerate(corridas, start=1):
                 print(
                     f"{i} - R$ {corrida['valor']:.2f} | "
-                    f"{corrida['distancia']:.2f} km"
+                    f"{corrida['distancia']:.2f} km | "
+                    f"{corrida['data']}"
                 )
 
     elif opcao == "3":
