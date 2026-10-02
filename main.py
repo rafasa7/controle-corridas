@@ -23,7 +23,7 @@ while True:
 
         corridas.append(corrida)
 
-        print("\nCorrida cadastrada com sucesso!")
+        print(f"\nCorrida cadastrada! Valor: R$ {valor} e distáncia: {distancia}km")
 
     elif opcao == "2":
         print("\n=== CORRIDAS CADASTRADAS ===")
