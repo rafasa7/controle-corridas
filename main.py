@@ -7,7 +7,8 @@ while True:
     print("2 - Ver corridas cadastradas")
     print("3 - Ver total ganho")
     print("4 - Ver ganho por km")
-    print("5 - Sair")
+    print("5 - Ver média por corrida")
+    print("6 - Sair")
 
     opcao = input("\nEscolha uma opção: ")
 
@@ -57,8 +58,17 @@ while True:
             print(f"Ganho por km: R$ {ganho_por_km:.2f}")
 
     elif opcao == "5":
+        if len(corridas) == 0:
+            print("Nenhuma corrida cadastrada.")
+
+        else:
+            total = sum(corrida["valor"] for corrida in corridas)
+            print(f"\nA média é {total / len(corridas)}")
+
+    elif opcao == "6":
         print("\nEncerrando o sistema. Até mais!")
         break
+
 
     else:
         print("\nOpção inválida. Tente novamente.")
