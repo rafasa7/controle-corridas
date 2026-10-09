@@ -31,8 +31,10 @@ def listar_corridas():
                     )
 
 def calcular_total():
+    total = 0
 
-    total = sum(corrida["valor"] for corrida in corridas)
+    for corrida in corridas:
+        total += corrida["valor"]
 
     return total
 
@@ -52,10 +54,13 @@ def calcular_ganho_por_km():
 def calcular_media():
     if len(corridas) == 0:
         return 0
-    
-    else:
-        total = sum(corrida["valor"] for corrida in corridas)
-        return total / len(corridas)
+
+    total = 0
+
+    for corrida in corridas:
+        total += corrida["valor"]
+
+    return total / len(corridas)
     
 
 
