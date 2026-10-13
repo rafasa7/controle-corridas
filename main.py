@@ -1,5 +1,20 @@
+import json
 from datetime import datetime
 corridas = []
+def salvar_corridas():
+    with open("corridas.json", "w", encoding="utf-8") as arquivo:
+        json.dump(corridas, arquivo, ensure_ascii=False, indent=4)
+
+def carregar_corridas():
+    global corridas
+
+    try:
+        with open("corridas.json", "r", encoding="utf-8") as arquivo:
+            corridas = json.load(arquivo)
+
+    except FileNotFoundError:
+        corridas = []
+
 def cadastrar_corrida():
 
     valor = float(input("Digite o valor da corrida: R$ "))
@@ -14,8 +29,11 @@ def cadastrar_corrida():
     }
 
     corridas.append(corrida)
+    salvar_corridas()
 
     print(f"\nCorrida cadastrada! Valor: R$ {valor} e distância: {distancia}km")
+
+carregar_corridas()
 
 def listar_corridas():
     print("\n=== CORRIDAS CADASTRADAS ===")
@@ -108,3 +126,6 @@ while True:
 
     else:
         print("\nOpção inválida. Tente novamente.")
+
+salvar_corridas()
+print("Corridas salvas com sucesso!")
