@@ -17,8 +17,25 @@ def carregar_corridas():
 
 def cadastrar_corrida():
 
-    valor = float(input("Digite o valor da corrida: R$ "))
-    distancia = float(input("Digite a distância percorrida (km): "))
+    try:
+        valor = float(input("Digite o valor da corrida: R$ "))
+    except ValueError:
+        print("Erro: digite um valor numérico válido.")
+        return
+
+    if valor < 0:
+        print("TESTE: entrei na validação")
+        return
+
+    try:
+        distancia = float(input("Digite a distância percorrida (km): "))
+    except ValueError:
+        print("Erro: digite uma distância numérica válida.")
+        return
+
+    if distancia <= 0:
+        print("Erro: a distância precisa ser maior que zero.")
+        return
 
     data = datetime.now().strftime("%d/%m/%Y")
 
