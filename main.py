@@ -24,7 +24,7 @@ def cadastrar_corrida():
         return
 
     if valor < 0:
-        print("TESTE: entrei na validação")
+        print("Erro: o valor da corrida não pode ser negativo.")
         return
 
     try:
@@ -64,6 +64,37 @@ def listar_corridas():
                         f"{corrida['distancia']:.2f} km | "
                         f"{corrida['data']}"
                     )
+
+def consultar_corridas_por_data():
+    data_consulta = input("Digite a data (DD/MM/AAAA): ")
+
+    try:
+        datetime.strptime(data_consulta, "%d/%m/%Y")
+    except ValueError:
+        print("Erro: data inválida. Use DD/MM/AAAA.")
+        return
+
+    encontradas = []
+
+    for corrida in corridas:
+        if corrida["data"] == data_consulta:
+            encontradas.append(corrida)
+
+    if len(encontradas) == 0:
+        print("Nenhuma corrida encontrada nessa data.")
+    else:
+        total = 0
+
+        for corrida in encontradas:
+            print(
+                f"R$ {corrida['valor']:.2f} | "
+                f"{corrida['distancia']:.2f} km | "
+                f"{corrida['data']}"
+            )
+
+            total += corrida["valor"]
+
+        print(f"Total ganho no dia: R$ {total:.2f}")
 
 def calcular_total():
     total = 0
@@ -106,7 +137,8 @@ while True:
     print("3 - Ver total ganho")
     print("4 - Ver ganho por km")
     print("5 - Ver média por corrida")
-    print("6 - Sair")
+    print("6 - Consultar corridas por data")
+    print("7 - Sair")
 
     opcao = input("\nEscolha uma opção: ")
 
@@ -137,6 +169,9 @@ while True:
             print(f"\nMédia por corrida: R$ {media:.2f}")
 
     elif opcao == "6":
+        consultar_corridas_por_data()
+
+    elif opcao == "7":
         print("\nEncerrando o sistema. Até mais!")
         break
 
